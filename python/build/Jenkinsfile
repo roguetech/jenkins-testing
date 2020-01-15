@@ -7,7 +7,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo test'
+                sh ( 
+                  script: """ #!/usr/bin/bash
+                  which python
+                  """
+                )
             }
         }
     }
