@@ -1,9 +1,41 @@
-node ('master') {
-    withEnv(['PATH=/usr/local/Cellar/coreutils/8.25/libexec/gnubin:/usr/local/Cellar/gnu-sed/4.2.2/libexec/gnubin:/Users/fbelzunc/cloudbees/support/support-shinobi-tools:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home//bin:/Users/fbelzunc/bin:/usr/local/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/usr/local/sbin:/usr/local/Cellar/ruby/2.1.0/lib/ruby/gems/2.1.0/gems/bundler-1.6.5/bin:/usr/local/Cellar/ruby/2.1.0/lib/ruby/gems/2.1.0/gems/beaker-1.16.0/bin:/usr/local/Cellar/ruby/2.1.0/bin/:/path/testing']) {
-        docker.image('docker.artifactory.tools.vsware.ie/ci-runner-python-build-container:latest').inside {
-          sh 'echo $PATH'
-          sh 'mvn --version'
+pipeline {
+    agent {
+        docker { image 'docker.artifactory.tools.vsware.ie/ci-runner-python-build-container:latest'
+                 registryUrl 'https://docker.artifactory.tools.vsware.ie'
+               }
+    }
+    
+    environment {
+        PATH = "/opt/rh/rh-python36/root/usr/bin:/home/centos/.local/bin:/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    }
+    
+    stages {
+        stage('Build') {
+            steps {
+                  sh 'pwd'
+                  sh 'hostname'
+                  sh 'whoami'
+                  sh 'echo $PATH'
+                  sh 'ls -la /opt/rh/rh-python36/'
+                  sh 'printenv | grep PATH'
+                  sh 'python --version'
+                  sh 'pip --version'
+            }
         }
     }
-    sh 'echo $PATH'
+    post {
+    always {
+      script {
+        sh(
+          script: """
+          sleep 300
+          ./docker-clean.sh docker.artifactory.tools.vsware.ie/ci-runner-python-build-container latest
+           """,
+          returnStdout: true
+          )
+      }
+      deleteDir()
+    }
+  }
 }
+
