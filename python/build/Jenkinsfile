@@ -21,11 +21,6 @@ pipeline {
     }
     post {
     always {
-      script {
-        sh(
-         
-          )
-      }
       deleteDir()
     }
   }
