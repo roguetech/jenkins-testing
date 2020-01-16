@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo $PATH'
-                withEnv(['PATH+PYTHON=/opt/rh/rh-python36/root/usr/bin'])
+                withEnv(['PATH+PYTHON=/opt/rh/rh-python36/root/usr/bin']) {
                   sh 'pwd'
                   sh 'hostname'
                   sh 'whoami'
@@ -16,6 +16,7 @@ pipeline {
                   sh 'ls -la /opt/rh/rh-python36/'
                   sh 'python --version'
                   sh 'pip --version'
+                }
             }
         }
     }
