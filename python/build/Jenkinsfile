@@ -18,6 +18,7 @@ pipeline {
                   sh 'whoami'
                   sh 'echo $PATH'
                   sh 'ls -la /opt/rh/rh-python36/'
+                  sh 'printenv | grep PATH'
                   sh 'python --version'
                   sh 'pip --version'
             }
