@@ -5,10 +5,6 @@ pipeline {
                }
     }
     
-    environment {
-        PATH = "/opt/rh/rh-python36/root/usr/bin:/home/centos/.local/bin:/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-    }
-    
     stages {
         stage('Build') {
             steps {
