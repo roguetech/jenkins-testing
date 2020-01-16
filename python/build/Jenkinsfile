@@ -1,6 +1,6 @@
 pipeline {
     agent {
-         docker { image 'python' }
+         docker { image 'docker-local.artifactory.tools.vsware.ie/ci-runner-python-build-container' }
     }
     stages {
         stage('Build') {
