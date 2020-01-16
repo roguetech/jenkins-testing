@@ -9,7 +9,7 @@ pipeline {
             steps {
                   sh 'pwd'
                   sh 'hostname'
-                  sh 'who'
+                  sh 'whoami'
                   sh 'python --version'
                   sh 'pip --version'
             }
