@@ -10,9 +10,9 @@ pipeline {
                   sh 'pwd'
                   sh 'hostname'
                   sh 'whoami'
+                  sh 'ls -la /opt/rh/rh-python36/'
                   sh 'python --version'
                   sh 'pip --version'
-                  sh 'ls -la /opt/rh/rh-python36/'
             }
         }
     }
