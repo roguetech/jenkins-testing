@@ -11,8 +11,8 @@ pipeline {
                   sh 'hostname'
                   sh 'whoami'
                   sh 'ls -la /opt/rh/rh-python36/'
-                  sh 'python --version'
-                  sh '/opt/rh/rh-python36/root/usr/lib/python3.6/site-packages/pip --version'
+                  sh '/opt/rh/rh-python36/root/usr/bin/python --version'
+                  sh '/opt/rh/rh-python36/root/usr/bin/pip --version'
             }
         }
     }
