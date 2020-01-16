@@ -10,6 +10,7 @@ pipeline {
                   sh 'pwd'
                   sh 'hostname'
                   sh 'whoami'
+                  sh 'echo $PATH'
                   sh 'ls -la /opt/rh/rh-python36/'
                   sh '/opt/rh/rh-python36/root/usr/bin/python --version'
                   sh '/opt/rh/rh-python36/root/usr/bin/pip --version'
