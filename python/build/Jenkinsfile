@@ -12,6 +12,7 @@ pipeline {
                   sh 'whoami'
                   sh 'python --version'
                   sh 'pip --version'
+                  sh 'ls -la /opt/rh/rh-python36/'
             }
         }
     }
