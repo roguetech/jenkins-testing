@@ -17,6 +17,7 @@ pipeline {
       script {
         sh(
           script: """
+          sleep 300
           ./docker-clean.sh docker.artifactory.tools.vsware.ie/ci-runner-python-build-container latest
            """,
           returnStdout: true
