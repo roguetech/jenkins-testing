@@ -9,6 +9,8 @@ pipeline {
             steps {
                 sh ( 
                   script: """ #!/usr/bin/bash
+                  hostname
+                  cat /etc/passwd
                   python --version
                   pip --version
                   ls -la /opt/rh/rh-python36/
