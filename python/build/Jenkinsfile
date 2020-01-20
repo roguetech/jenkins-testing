@@ -1,28 +1,55 @@
 pipeline {
-    agent {
-        docker { image 'docker.artifactory.tools.vsware.ie/ci-runner-python-build-container:latest'
-                 registryUrl 'https://docker.artifactory.tools.vsware.ie'
-               }
-    }
-    
-    stages {
-        stage('Build') {
-            steps {
-                  sh 'pwd'
-                  sh 'hostname'
-                  sh 'whoami'
-                  sh 'echo $PATH'
-                  sh 'ls -la /opt/rh/rh-python36/'
-                  sh 'printenv | grep PATH'
-                  sh 'python --version'
-                  sh 'pip --version'
-            }
-        }
-    }
-    post {
-    always {
-      deleteDir()
+  agent {
+    docker {
+      image 'docker.artifactory.tools.vsware.ie/ci-runner-python-build-container'
+      registryUrl 'https://docker.artifactory.tools.vsware.ie'
     }
   }
-}
+    stages {
+      stage('Checkout'){
+        steps {
+          sh 'echo Checkout AWS Functions'
+          echo 'test checkout'
+        }
+      }
 
+      stage("Setting Up Environment"){
+        steps {
+          sh """
+            echo "=============== STOPPING ENVIRONMENT ==========================="
+
+            echo "BUILD_RELEASE_NUMBER=1.0-LATEST" > env.properties
+
+            echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+            echo "setting up python environment"
+
+            if [ ! -d $WORKSPACE/venv ]; then
+              python3 -m venv $WORKSPACE/venv --without-pip
+              source $WORKSPACE/venv/bin/activate
+              pip install boto3
+            fi
+
+            echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+          """
+        }
+      }
+
+      stage('Shutting down Dev Environment'){
+        steps {
+          sh """
+            echo "running script"
+
+            source $WORKSPACE/venv/bin/activate
+            JSON='{"env":"no_preprod","action":"stop"}'
+            python print $JSON
+        """
+        }
+      }
+    }
+
+    post {
+      always {
+        deleteDir()
+      }
+    }
+}
