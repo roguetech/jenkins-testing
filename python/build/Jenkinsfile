@@ -43,7 +43,7 @@ pipeline {
             echo "before"
             source $WORKSPACE/venv/bin/activate
             echo "middle"
-            JSON='{"env":"no_preprod","action":"stop"}'
+            
             python -u test.py
             echo $JSON
         """
