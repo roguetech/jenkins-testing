@@ -36,7 +36,7 @@ pipeline {
 
       stage('Shutting down Dev Environment'){
         steps {
-          sh -x """
+          sh """
             echo "running script"
 
             
