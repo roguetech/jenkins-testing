@@ -37,7 +37,7 @@ pipeline {
 
             
             echo "before"
-            
+            source $WORKSPACE/venv/bin/activate
             echo "middle"
             JSON='{"env":"no_preprod","action":"stop"}'
             echo "end"
