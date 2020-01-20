@@ -39,7 +39,7 @@ pipeline {
             echo "before"
             
             echo "middle"
-            python print $JSON
+           
             echo "end"
         """
         }
