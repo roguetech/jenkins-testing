@@ -23,7 +23,11 @@ pipeline {
             echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
             echo "setting up python environment"
 
-        
+            if [ ! -d $WORKSPACE/venv ]; then
+              python3 -m venv $WORKSPACE/venv --without-pip
+              source $WORKSPACE/venv/bin/activate
+              pip install boto3
+            fi
 
             echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
           """
