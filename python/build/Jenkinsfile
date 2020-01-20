@@ -15,7 +15,7 @@ pipeline {
 
       stage("Setting Up Environment"){
         steps {
-          sh """
+          sh '''
             echo "=============== STOPPING ENVIRONMENT ==========================="
 
             echo "BUILD_RELEASE_NUMBER=1.0-LATEST" > env.properties
@@ -30,7 +30,7 @@ pipeline {
             fi
 
             echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-          """
+          '''
         }
       }
 
