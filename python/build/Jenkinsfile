@@ -36,7 +36,7 @@ pipeline {
 
       stage('Shutting down Dev Environment'){
         steps {
-          sh """
+          sh -x """
             echo "running script"
 
             
@@ -45,7 +45,7 @@ pipeline {
             echo "middle"
             JSON='{"env":"no_preprod","action":"stop"}'
             python -u test.py
-            
+            echo $JSON 
         """
         }
       }
