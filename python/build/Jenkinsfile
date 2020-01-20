@@ -35,7 +35,7 @@ pipeline {
           sh """
             echo "running script"
 
-            source $WORKSPACE/venv/bin/activate
+            
             echo "before"
             
             echo "middle"
