@@ -39,8 +39,9 @@ pipeline {
             echo "before"
             
             echo "middle"
-           
+            JSON='{"env":"no_preprod","action":"stop"}'
             echo "end"
+            echo JSON
         """
         }
       }
