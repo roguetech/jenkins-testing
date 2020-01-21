@@ -24,6 +24,7 @@ pipeline {
             echo "setting up python environment"
             
             if [ ! -d $WORKSPACE/venv ]; then
+              yum install -y zlib
               python3 -m venv $WORKSPACE/venv --without-pip
               source $WORKSPACE/venv/bin/activate
             fi  
