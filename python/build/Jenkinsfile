@@ -23,10 +23,7 @@ pipeline {
             echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
             echo "setting up python environment"
             
-            if [ ! -d $WORKSPACE/venv ]; then
-              python3 -m venv $WORKSPACE/venv --without-pip
-              source $WORKSPACE/venv/bin/activate
-            fi  
+    
 
             echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
           '''
@@ -41,7 +38,7 @@ pipeline {
             
             echo "before"
             sleep 600
-            source $WORKSPACE/venv/bin/activate
+  
             echo "middle"
             JSON='{"env":"no_preprod","action":"stop"}'
             python -u test.py
