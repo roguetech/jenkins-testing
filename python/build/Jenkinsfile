@@ -40,7 +40,7 @@ pipeline {
 
             
             echo "before"
-            which boto3
+            sleep 500
             source $WORKSPACE/venv/bin/activate
             echo "middle"
             JSON='{"env":"no_preprod","action":"stop"}'
