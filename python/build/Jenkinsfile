@@ -3,7 +3,7 @@ pipeline {
     docker {
       image 'docker.artifactory.tools.vsware.ie/ci-runner-python-build-container'
       registryUrl 'https://docker.artifactory.tools.vsware.ie'
-      args '-v /home/centos/.aws:/home/centos/.aws -v $HOME/.ssh:/home/centos/.ssh -v $HOME/.ssh:/home/jenkins/.ssh -v /home/centos/.aws:/var/jenkins_home/.aws -v $WORKSPACE:/home/centos/app -v /var/run/docker.sock:/var/run/docker.sock -w /home/centos/app'
+      args '-v /var/jenkins_home/.aws:/home/centos/.aws -v $HOME/.ssh:/home/centos/.ssh -v /var/run/docker.sock:/var/run/docker.sock -w /home/centos/app'
     }
   }
     stages {
