@@ -1,7 +1,7 @@
 import boto3, sys, json
 
 ec2 = boto3.client('ec2')
-responce = ec2.describe_instance_status()
+response = ec2.describe_instance_status()
 
 print(response)
 
