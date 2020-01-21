@@ -37,11 +37,10 @@ pipeline {
 
             
             echo "before"
-            sleep 600
   
             echo "middle"
             JSON='{"env":"no_preprod","action":"stop"}'
-            python -u test.py
+            python3 -u test.py
             echo $JSON 
         '''
         }
