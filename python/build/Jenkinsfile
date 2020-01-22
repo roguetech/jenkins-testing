@@ -1,37 +1,20 @@
 pipeline {
   agent {
-    docker {
-      image 'docker.artifactory.tools.vsware.ie/ci-runner-python-build-container'
-      registryUrl 'https://docker.artifactory.tools.vsware.ie'
-      args '-v /var/jenkins_home/.aws:/home/centos/.aws -v $HOME/.ssh:/home/centos/.ssh -v /var/run/docker.sock:/var/run/docker.sock -w /home/centos/app'
-    }
+    label 'master'
   }
-    stages {
-      stage('Checkout'){
+  stages {    
+    stage('Shutting down Dev Environment'){
+        agent {
+          docker {
+            image 'docker.artifactory.tools.vsware.ie/ci-runner-python-build-container'
+            registryUrl 'https://docker.artifactory.tools.vsware.ie'
+            args '-v /var/jenkins_home/.aws:/home/centos/.aws -v $HOME/.ssh:/home/centos/.ssh -v /var/run/docker.sock:/var/run/docker.sock -w /home/centos/app'
+          }
+        }
         steps {
           sh 'echo Checkout AWS Functions'
           echo 'test checkout'
         }
-      }
-
-      stage("Setting Up Environment"){
-        steps {
-          sh '''
-            echo "=============== STOPPING ENVIRONMENT ==========================="
-
-            echo "BUILD_RELEASE_NUMBER=1.0-LATEST" > env.properties
-
-            echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-            echo "setting up python environment"
-            
-    
-
-            echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-          '''
-        }
-      }
-
-      stage('Shutting down Dev Environment'){
         steps {
           sh '''
             echo "running script"
