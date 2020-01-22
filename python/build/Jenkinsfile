@@ -3,15 +3,15 @@ pipeline {
     label 'master'
   }
   stages {    
+    agent {
+       docker {
+         image 'docker.artifactory.tools.vsware.ie/ci-runner-python-build-container'
+         registryUrl 'https://docker.artifactory.tools.vsware.ie'
+         args '-v /var/jenkins_home/.aws:/home/centos/.aws -v $HOME/.ssh:/home/centos/.ssh -v /var/run/docker.sock:/var/run/docker.sock -w /home/centos/app'
+       }
+    }
+    
     stage('Shutting down Dev Environment'){
-        agent {
-          docker {
-            image 'docker.artifactory.tools.vsware.ie/ci-runner-python-build-container'
-            registryUrl 'https://docker.artifactory.tools.vsware.ie'
-            withServer 'master'
-            args '-v /var/jenkins_home/.aws:/home/centos/.aws -v $HOME/.ssh:/home/centos/.ssh -v /var/run/docker.sock:/var/run/docker.sock -w /home/centos/app'
-          }
-        }
         
         steps {
           sh '''
