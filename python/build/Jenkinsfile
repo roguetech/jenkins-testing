@@ -11,10 +11,7 @@ pipeline {
             args '-v /var/jenkins_home/.aws:/home/centos/.aws -v $HOME/.ssh:/home/centos/.ssh -v /var/run/docker.sock:/var/run/docker.sock -w /home/centos/app'
           }
         }
-        steps {
-          sh 'echo Checkout AWS Functions'
-          echo 'test checkout'
-        }
+        
         steps {
           sh '''
             echo "running script"
